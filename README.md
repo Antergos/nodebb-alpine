@@ -1,2 +1,2 @@
 # nodebb-alpine
-Docker image for deploying forum.antergos.com
+Docker image for deploying NodeBB. Currently using it for https://forum.antergos.com
