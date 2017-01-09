@@ -90,4 +90,6 @@ ENV NODE_ENV production
 
 WORKDIR /nodebb 
 
-CMD [ 'npm', 'start' ]
+VOLUME ["/data"]
+
+CMD [ "npm", "start" ]
