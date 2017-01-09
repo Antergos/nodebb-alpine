@@ -93,6 +93,7 @@ WORKDIR /nodebb
 
 VOLUME ["/data"]
 
-EXPOSE ["4567", "8888"]
+EXPOSE 4567
+EXPOSE 8888
 
 CMD [ "./docker-entrypoint.sh" ]
