@@ -8,7 +8,7 @@ ENV NODE_VERSION 7.4.0
 # Build & Install Node.js
 ##
 RUN adduser -D -u 1000 node \
-	&& apk add --no-cache libstdc++ \
+	&& apk add --no-cache libstdc++ bash \
 	&& apk add --no-cache --virtual .build-deps \
 		binutils-gold \
 		curl \
