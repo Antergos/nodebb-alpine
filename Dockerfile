@@ -85,6 +85,7 @@ RUN apk del .build-deps \
 	&& rm -Rf "node-v$NODE_VERSION" \
 	&& rm "node-v$NODE_VERSION.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 
+ADD docker-entrypoint.sh /nodebb
 
 ENV NODE_ENV production
 
@@ -92,4 +93,4 @@ WORKDIR /nodebb
 
 VOLUME ["/data"]
 
-CMD [ "npm", "start" ]
+CMD [ "./docker-entrypoint.sh" ]
