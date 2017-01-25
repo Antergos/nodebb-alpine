@@ -47,7 +47,7 @@ RUN adduser -D -u 1000 node \
 ##
 # Build & Install NodeBB
 ##
-RUN git clone https://github.com/antergos/nodebb \
+RUN git clone https://github.com/nodebb/nodebb \
 	&& ln -s /data/config.json /nodebb/config.json \
 	&& cd nodebb \
 	&& npm install \
