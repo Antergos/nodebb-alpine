@@ -42,7 +42,7 @@ RUN git clone --branch v1.1.2 https://github.com/nodebb/nodebb /nodebb \
 		nodebb-plugin-topic-tags \
 	&& cd node_modules
 
-
+ADD npm-shrinkwrap.json /nodebb
 ADD docker-entrypoint.sh /
 
 ENV NODE_ENV $NODE_ENV
