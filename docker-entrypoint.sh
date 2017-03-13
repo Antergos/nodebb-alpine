@@ -11,7 +11,7 @@ fi
 ln -s /theme /nodebb/node_modules/nodebb-theme-antergos
 
 # Give redis some time to come up
-sleep 5
+sleep 10
 
 { cd /nodebb && ./nodebb upgrade; } || exit 1
 
