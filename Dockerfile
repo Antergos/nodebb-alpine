@@ -6,16 +6,15 @@ ARG NODE_ENV
 ##
 # Install Deps
 ##
-RUN apk add --no-cache git \
+RUN apk add --no-cache git coreutils \
 	&& npm install -g yarn
 
 
 ##
 # Build & Install NodeBB
 ##
-RUN git clone --depth=1 https://github.com/nodebb/nodebb \
-	&& ln -sf /data/config.json /nodebb/config.json \
-	&& cd nodebb \
+RUN git clone --branch v1.1.2 https://github.com/nodebb/nodebb /nodebb \
+	&& cd /nodebb \
 	&& yarn \
 	&& yarn add \
 		nodebb-plugin-dbsearch \
@@ -41,18 +40,15 @@ RUN git clone --depth=1 https://github.com/nodebb/nodebb \
 		nodebb-plugin-emoji-static \
 		nodebb-plugin-sso-auth0 \
 		nodebb-plugin-topic-tags \
-		nodebb-theme-antergos
+	&& cd node_modules
 
 
-ADD docker-entrypoint.sh /nodebb/
-ADD etc /
+ADD docker-entrypoint.sh /
 
-ENV NODE_ENV production
+ENV NODE_ENV $NODE_ENV
 
 WORKDIR /nodebb 
 
-VOLUME ["/data"]
-
 EXPOSE 4567
 
-CMD [ "./docker-entrypoint.sh" ]
+CMD [ "/docker-entrypoint.sh" ]
