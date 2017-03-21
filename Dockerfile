@@ -9,14 +9,16 @@ ARG NODE_ENV
 RUN apk add --no-cache git coreutils \
 	&& npm install -g yarn
 
+ADD npm-shrinkwrap.json /
 
 ##
 # Build & Install NodeBB
 ##
 RUN git clone --branch v1.1.2 https://github.com/nodebb/nodebb /nodebb \
 	&& cd /nodebb \
-	&& yarn \
-	&& yarn add \
+	&& cp /npm-shrinkwrap.json . \
+	&& npm install \
+	&& npm install \
 		nodebb-plugin-dbsearch \
 		nodebb-plugin-emoji-extended \
 		nodebb-plugin-markdown \
@@ -42,7 +44,7 @@ RUN git clone --branch v1.1.2 https://github.com/nodebb/nodebb /nodebb \
 		nodebb-plugin-topic-tags \
 	&& cd node_modules
 
-ADD npm-shrinkwrap.json /nodebb
+
 ADD docker-entrypoint.sh /
 
 ENV NODE_ENV $NODE_ENV
