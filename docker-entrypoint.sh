@@ -3,7 +3,7 @@ set -e
 
 [[ -z "${NODE_ENV}" ]] && export NODE_ENV='development'
 
-_SECRET=$(cat /private/nodebb/config.json)
+_SECRET=$(cat /var/run/secrets/nodebb_secret)
 
 if [[ "${NODE_ENV}" = 'development' ]]; then
 	_URL='https://forum-staging.antergos.com'
