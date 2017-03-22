@@ -1,13 +1,22 @@
 #!/bin/sh
+set -e
 
-# config
-cp /private/forum/nodebb/config.json /nodebb
+[[ -z "${NODE_ENV}" ]] && export NODE_ENV='development'
 
-if [[ -z "${NODE_ENV}" || "${NODE_ENV}" = 'development' ]]; then
-	sed -i 's|forum|forum-staging|g' /nodebb/config.json
+_SECRET=$(cat /private/forum/nodebb/config.json)
+
+if [[ "${NODE_ENV}" = 'development' ]]; then
+	_URL='https://forum-staging.antergos.com'
+else
+	_URL='https://forum.antergos.com'
 fi
 
-# theme
+
+# Set Config Vars
+sed -i "s|<URL>|${_URL}|g;
+		s|<SECRET>|${_SECRET}|g" /nodebb/config.json
+
+# Theme
 ln -s /theme /nodebb/node_modules/nodebb-theme-antergos
 
 # Give redis some time to come up
