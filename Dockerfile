@@ -6,8 +6,7 @@ ARG NODE_ENV
 ##
 # Install Deps
 ##
-RUN apk add --no-cache git coreutils \
-	&& npm install -g yarn
+RUN apk add --no-cache git coreutils
 
 ADD npm-shrinkwrap.json config.json /
 
@@ -16,35 +15,7 @@ ADD npm-shrinkwrap.json config.json /
 ##
 RUN git clone --branch v1.1.2 https://github.com/nodebb/nodebb /nodebb \
 	&& cd /nodebb \
-	&& mv -f /npm-shrinkwrap.json /config.json . \
-	&& npm install \
-	&& npm install \
-		nodebb-plugin-dbsearch \
-		nodebb-plugin-emoji-extended \
-		nodebb-plugin-markdown \
-		nodebb-plugin-registration-question \
-		nodebb-plugin-soundpack-default \
-		nodebb-plugin-spam-be-gone \
-		nodebb-widget-essentials \
-		nodebb-plugin-emailer-mailgun \
-		nodebb-plugin-mentions \
-		nodebb-plugin-question-and-answer \
-		nodebb-plugin-composer-default \
-		nodebb-plugin-imgur \
-		nodebb-plugin-blog-comments \
-		nodebb-plugin-gravatar \
-		nodebb-plugin-ns-likes \
-		nodebb-plugin-codeinput \
-		nodebb-plugin-emoji-apple \
-		nodebb-plugin-ns-login \
-		nodebb-plugin-poll \
-		nodebb-plugin-write-api \
-		nodebb-plugin-emoji-static \
-		nodebb-plugin-sso-auth0 \
-		nodebb-plugin-topic-tags
-
-
-ADD docker-entrypoint.sh /
+	&& mv -f /npm-shrinkwrap.json /config.json .
 
 ENV NODE_ENV $NODE_ENV
 
@@ -52,4 +23,4 @@ WORKDIR /nodebb
 
 EXPOSE 4567
 
-CMD [ "/docker-entrypoint.sh" ]
+CMD [ "/entrypoint/nodebb" ]
