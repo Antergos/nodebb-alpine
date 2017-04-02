@@ -17,7 +17,7 @@ sed -i "s|<URL>|${_URL}|g;
 		s|<SECRET>|${_SECRET}|g" /nodebb/config.json
 
 # Theme
-cp /theme /nodebb-theme-antergos
+cp -r /theme /nodebb-theme-antergos
 mv /nodebb-theme-antergos /nodebb/node_modules
 
 # Give redis some time to come up
