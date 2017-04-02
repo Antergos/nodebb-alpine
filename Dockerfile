@@ -9,14 +9,14 @@ ARG NODE_ENV
 RUN apk add --no-cache git coreutils \
 	&& npm install -g yarn
 
-ADD npm-shrinkwrap.json /
+ADD npm-shrinkwrap.json config.json /
 
 ##
 # Build & Install NodeBB
 ##
 RUN git clone --branch v1.1.2 https://github.com/nodebb/nodebb /nodebb \
 	&& cd /nodebb \
-	&& cp /npm-shrinkwrap.json . \
+	&& mv -f /npm-shrinkwrap.json /config.json . \
 	&& npm install \
 	&& npm install \
 		nodebb-plugin-dbsearch \
