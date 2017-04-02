@@ -41,8 +41,7 @@ RUN git clone --branch v1.1.2 https://github.com/nodebb/nodebb /nodebb \
 		nodebb-plugin-write-api \
 		nodebb-plugin-emoji-static \
 		nodebb-plugin-sso-auth0 \
-		nodebb-plugin-topic-tags \
-	&& cd node_modules
+		nodebb-plugin-topic-tags
 
 
 ADD docker-entrypoint.sh /
