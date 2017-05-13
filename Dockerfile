@@ -8,6 +8,8 @@ ARG NODE_ENV
 ##
 RUN apk add --no-cache git coreutils
 
+ADD config.json /
+
 ##
 # Build & Install NodeBB
 ##
