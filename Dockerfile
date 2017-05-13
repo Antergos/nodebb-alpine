@@ -8,14 +8,12 @@ ARG NODE_ENV
 ##
 RUN apk add --no-cache git coreutils
 
-ADD npm-shrinkwrap.json config.json /
-
 ##
 # Build & Install NodeBB
 ##
-RUN git clone --branch v1.1.2 https://github.com/nodebb/nodebb /nodebb \
+RUN git clone --branch v1.5.0 https://github.com/nodebb/nodebb /nodebb \
 	&& cd /nodebb \
-	&& mv -f /npm-shrinkwrap.json /config.json .
+	&& mv -f /config.json .
 
 ENV NODE_ENV $NODE_ENV
 
