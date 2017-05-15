@@ -11,9 +11,8 @@ RUN apk add --no-cache git coreutils
 ##
 # Build & Install NodeBB
 ##
-RUN git clone --branch v1.5.0 https://github.com/nodebb/nodebb /nodebb \
-	&& cd /nodebb \
-	&& git checkout 5673769c8ca8dddcf96a6141cb589fae8a24512f
+RUN git clone https://github.com/nodebb/nodebb /nodebb \
+	&& cd /nodebb
 
 ENV NODE_ENV $NODE_ENV
 
