@@ -13,6 +13,8 @@ RUN apk add --no-cache git coreutils
 ##
 RUN git clone https://github.com/nodebb/nodebb /nodebb \
 	&& cd /nodebb \
+	&& npm install -g install-local \
+	&& cp install/package.json . \
 	&& npm install \
 	&& npm install --save \
 		nodebb-plugin-dbsearch \
@@ -36,16 +38,14 @@ RUN git clone https://github.com/nodebb/nodebb /nodebb \
 		nodebb-plugin-emoji-static \
 		nodebb-plugin-sso-auth0 \
 		nodebb-plugin-topic-tags \
-		nodebb-theme-antergos \
 		https://github.com/antergos/nodebb-plugin-blog-comments \
-	&& rm -rf node_modules \
-	&& mkdir -p build/public
+	&& rm -rf node_modules
 
 ENV NODE_ENV $NODE_ENV
 
 WORKDIR /nodebb
 
-VOLUME [ "/nodebb/build/public" ]
+VOLUME /nodebb
 
 EXPOSE 4567
 
